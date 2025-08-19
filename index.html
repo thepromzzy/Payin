@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KingsFx Loan — Simple, Fair, Fast</title>
+    <meta name="description"
+        content="Get a transparent loan with fair 20% interest, clear terms, and fast approval. Built for clarity and trust." />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Suspended overlay (shown if account is locked) -->
+    <div id="suspend-overlay" class="hidden" aria-hidden="true">
+        <div class="suspend-card">
+            <h2>Account Suspended</h2>
+            <p>Your access is temporarily locked due to missed repayment. Please contact support or settle your balance
+                to restore access.</p>
+            <button id="request-review-btn" class="btn">I've Repaid — Request Review</button>
+            <small>This is a demo-only lock. In production this action notifies our team.</small>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="#" class="brand">
+                <span class="dot"></span> KingsFx Loan
+            </a>
+            <nav id="nav" class="nav">
+                <a href="#hero">Home</a>
+                <a href="#about">About</a>
+                <a href="#types">Loan Types</a>
+                <a href="#apply">Apply</a>
+                <a href="#repay">Repayment</a>
+                <a href="#terms">Terms</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <button id="menuBtn" class="menu-btn" aria-label="Open Menu" aria-expanded="false">☰</button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section id="hero" class="hero section">
+        <div class="container grid-2">
+            <div class="hero-copy reveal">
+                <h1>Simple Loans. <span class="accent">Real</span> Support.</h1>
+                <p>Access transparent financing with a clear <strong>20% flat interest</strong>, fair terms, and fast
+                    approvals. No jargon—just what you need to move forward.</p>
+                <div class="hero-cta">
+                    <a href="#apply" class="btn">Get Started</a>
+                    <a href="#types" class="btn ghost">Explore Loan Types</a>
+                </div>
+                <ul class="trust-points">
+                    <li>Fast review &amp; decision</li>
+                    <li>Upfront fees disclosed</li>
+                    <li>Secure &amp; compliant process</li>
+                </ul>
+            </div>
+            <div class="hero-art reveal">
+                <div class="card-stats">
+                    <div>
+                        <h3>₦100k+</h3>
+                        <p>Disbursed</p>
+                    </div>
+                    <div>
+                        <h3>98%</h3>
+                        <p>On-time approvals</p>
+                    </div>
+                    <div>
+                        <h3>24/7</h3>
+                        <p>Payout window</p>
+                    </div>
+                </div>
+                <div class="device"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="section light">
+        <div class="container grid-2">
+            <div class="reveal">
+                <h2>About KingsFx Loan</h2>
+                <p>We’re a modern micro‑lending outfit designed for clarity and trust. Our process is lightweight, our
+                    communication is plain language, and our decisions are guided by responsible lending principles.</p>
+                <p>Whether you’re stabilizing cash flow, growing a side hustle, or covering an urgent expense, we help
+                    you bridge the gap—without hidden surprises.</p>
+            </div>
+            <div class="reveal">
+                <div class="about-card">
+                    <h3>Why borrowers choose us</h3>
+                    <ul class="checklist">
+                        <li>Fair 20% flat interest</li>
+                        <li>Clear repayment plan</li>
+                        <li>Human support when you need it</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LOAN TYPES -->
+    <section id="types" class="section">
+        <div class="container">
+            <h2 class="center">Loan Types</h2>
+            <p class="center sub">Pick a loan that fits your goals. All options use our standard 20% interest per month
+                and clear
+                terms.</p>
+
+            <div class="card-grid">
+                <article class="loan-card reveal">
+                    <h3>Starter Loan</h3>
+                    <p>Ideal for quick needs and emergencies. Simple application and fast decision.</p>
+                    <ul>
+                        <li>Amount: ₦5,000 – ₦20,000</li>
+                        <li>Tenor: 1 month</li>
+                        <li>Flat interest: 20%</li>
+                    </ul>
+                </article>
+
+                <article class="loan-card reveal">
+                    <h3>Business Boost</h3>
+                    <p>For small businesses and side hustles. Boost inventory, marketing, or operations.</p>
+                    <ul>
+                        <li>Amount: ₦50,000 – ₦100,000</li>
+                        <li>Tenor: 1–2 months</li>
+                        <li>Flat interest: 20%</li>
+                    </ul>
+                </article>
+
+                <article class="loan-card reveal">
+                    <h3>Education Assist</h3>
+                    <p>Cover school fees or certification fees to level up your career faster.</p>
+                    <ul>
+                        <li>Amount: ₦20,000 – ₦50,000</li>
+                        <li>Tenor: 1–3 months</li>
+                        <li>Flat interest: 20%</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLY / REGISTRATION -->
+    <section id="apply" class="section light">
+        <div class="container">
+            <h2 class="center">Apply Now</h2>
+            <p class="center sub">Complete the form and we’ll get back to you quickly. You’ll also receive a copy of
+                your request by email.</p>
+
+            <!-- Tip: Replace action with your Formspree endpoint OR leave blank to use mailto fallback in script.js -->
+            <form id="loanForm" class="form" action="https://formspree.io/f/mvgqjgaj" method="POST" novalidate>
+                <div class="form-row">
+                    <label>Full Name <span class="req">*</span></label>
+                    <input type="text" name="fullName" required placeholder="Name Surname" />
+                    <span class="error" id="err-fullName"></span>
+                </div>
+                <div class="form-row">
+                    <label>Email <span class="req">*</span></label>
+                    <input type="email" name="email" required placeholder="you@gmail.com" />
+                    <span class="error" id="err-email"></span>
+                </div>
+                <div class="form-row">
+                    <label>Phone <span class="req">*</span></label>
+                    <input type="tel" name="phone" required placeholder="+234 801 234 5678" />
+                    <span class="error" id="err-phone"></span>
+                </div>
+                <div class="form-row">
+                    <label>Address</label>
+                    <input type="text" name="address" placeholder="Street, City, State" />
+                </div>
+                <div class="form-row">
+                    <label>Loan Type <span class="req">*</span></label>
+                    <select name="loanType" required>
+                        <option value="">Select</option>
+                        <option>Starter Loan</option>
+                        <option>Business Boost</option>
+                        <option>Education Assist</option>
+                    </select>
+                    <span class="error" id="err-loanType"></span>
+                </div>
+                <div class="form-row">
+                    <label>Loan Amount (₦) <span class="req">*</span></label>
+                    <input type="number" name="amount" required min="5000" max="100000" step="1000"
+                        placeholder="e.g., 5000" />
+                    <span class="error" id="err-amount"></span>
+                </div>
+                <div class="form-row">
+                    <label>Tenor (months) <span class="req">*</span></label>
+                    <input type="number" name="tenor" required min="1" max="3" placeholder="e.g., 1" />
+                </div>
+                <div class="form-row">
+                    <label>Expected Due Date <span class="req">*</span></label>
+                    <input type="date" name="dueDate" required />
+                    <span class="error" id="err-dueDate"></span>
+                </div>
+                <div class="form-row">
+                    <label>Your Bank Account Details (compulsory)</label>
+                    <textarea name="notes" rows="4"
+                        placeholder="Input your bank name, account number and account name…"></textarea>
+                </div>
+                <div class="form-row consent">
+                    <label>
+                        <input type="checkbox" name="agree" required />
+                        I agree to the <a href="#terms">20% interest and Terms &amp; Conditions</a>.
+                    </label>
+                    <span class="error" id="err-agree"></span>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit Application</button>
+                    <p id="formMsg" class="form-msg" role="status" aria-live="polite"></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- REPAYMENT -->
+    <section id="repay" class="section">
+        <div class="container">
+            <h2 class="center">Repayment Details</h2>
+            <p class="center sub">Pay on or before your due date to keep your account in good standing.</p>
+
+            <div class="repay-grid">
+                <div class="repay-card reveal">
+                    <h3>Bank Transfer</h3>
+                    <ul class="details">
+                        <li><strong>Account Name:</strong> IHECHUKWU ONYEDIKACHI</li>
+                        <li><strong>Bank:</strong>Opay</li>
+                        <li><strong>Account Number:</strong>8106915548</li>
+                    </ul>
+                    <button class="btn copy" data-copy=" IHECHUKWU ONYEDIKACHI | Opay | 8106915548">Copy
+                        Details</button>
+                </div>
+
+                <div class="repay-card reveal">
+                    <h3>Your Repayment Plan</h3>
+                    <p>When you apply, we compute your total cost at a flat <strong>20% interest</strong> Monthly.
+                    </p>
+                    <div class="plan" id="planBox">
+                        <p>Example: ₦100,000 for 1 months → repay ₦120,000 total. You’ll see your exact plan after
+                            submitting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TERMS -->
+    <section id="terms" class="section light">
+        <div class="container">
+            <h2 class="center">Terms &amp; Conditions</h2>
+            <div class="terms-grid">
+                <article class="terms-card reveal">
+                    <h3>Interest &amp; Fees</h3>
+                    <ul>
+                        <li>Flat interest: <strong>20%</strong> on principal <strong>Per Month.</strong></li>
+                        <li>No hidden fees. Any applicable processing fee will be stated upfront.</li>
+                        <li>Late fee: <strong>5% of outstanding</strong> per week after a 5‑day grace period.</li>
+                    </ul>
+                </article>
+                <article class="terms-card reveal">
+                    <h3>Eligibility</h3>
+                    <ul>
+                        <li>Valid government ID and verifiable contact details.</li>
+                        <li>Proof of income or business activity (where applicable).</li>
+                        <li>Consent to basic credit &amp; fraud checks.</li>
+                    </ul>
+                </article>
+                <article class="terms-card reveal">
+                    <h3>Repayment &amp; Defaults</h3>
+                    <ul>
+                        <li>Repay on or before your due date to avoid penalties.</li>
+                        <li>Missed payments may lead to temporary account suspension.</li>
+                        <li>We encourage early contact if you anticipate difficulty.</li>
+                    </ul>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact" class="footer">
+        <div class="container footer-grid">
+            <div>
+                <a href="#hero" class="brand"><span class="dot"></span> KingsFx Loan</a>
+                <p class="muted">Clear. Modern. Responsible lending.</p>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <ul class="list">
+                    <li>Email: <a href="mailto:you@yourdomain.com">kingsfx@gmail.com</a></li>
+                    <li>Phone: <a href="tel:+2348012345678">+234 701 854 0811</a></li>
+                    <li>Address: Lagos, Nigeria</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Follow</h4>
+                <div class="social">
+                    <a href="#" aria-label="Twitter">Twitter</a>
+                    <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                    <a href="#" aria-label="Instagram">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="copy">
+            © <span id="year"></span> KingsFx Loan — All rights reserved.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
