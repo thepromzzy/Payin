@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>KingsFx Loan — Repayment</title>
+    <meta name="description" content="Make your loan repayment quickly and securely" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="repayment.css">
+    <link rel="script" href="">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="#" class="brand" onclick="window.close(); return false;">
+                <span class="dot"></span> KingsFx Loan
+            </a>
+            <h1 class="page-title">Loan Repayment</h1>
+            <p class="subtitle">Complete your repayment quickly and securely</p>
+        </div>
+
+        <div class="repayment-grid">
+            <!-- Bank Transfer Details -->
+            <div class="card">
+                <h3>Bank Transfer Details</h3>
+                <p>Transfer your repayment amount to the account below:</p>
+
+                <div class="bank-details">
+                    <div class="detail">
+                        <span><strong>Account Name:</strong></span>
+                        <span>IHECHUKWU ONYEDIKACHI</span>
+                    </div>
+                    <div class="detail">
+                        <span><strong>Bank:</strong></span>
+                        <span>Opay</span>
+                    </div>
+                    <div class="detail">
+                        <span><strong>Account Number:</strong></span>
+                        <span>8106915548</span>
+                    </div>
+                </div>
+
+                <button class="btn secondary" id="copyBtn" onclick="copyBankDetails()">
+                    Copy Bank Details
+                </button>
+            </div>
+
+            <!-- Repayment Confirmation Form -->
+            <div class="card">
+                <h3>Confirm Your Payment</h3>
+                <p>After making the transfer, please fill out this form to notify us of your payment:</p>
+
+                <form id="repaymentForm" class="form" action="https://formspree.io/f/mvgqjgaj" method="POST" novalidate>
+                    <input type="hidden" name="form_type" value="repayment_confirmation">
+
+                    <div class="form-row">
+                        <label>Full Name <span class="req">*</span></label>
+                        <input type="text" name="fullName" required placeholder="Your full name">
+                        <span class="error" id="err-fullName"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Email Address <span class="req">*</span></label>
+                        <input type="email" name="email" required placeholder="your@email.com">
+                        <span class="error" id="err-email"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Phone Number <span class="req">*</span></label>
+                        <input type="tel" name="phone" required placeholder="+234 801 234 5678">
+                        <span class="error" id="err-phone"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Amount Paid (₦) <span class="req">*</span></label>
+                        <input type="number" name="amount" required min="1000" placeholder="e.g., 120000">
+                        <span class="error" id="err-amount"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Payment Date <span class="req">*</span></label>
+                        <input type="date" name="paymentDate" required>
+                        <span class="error" id="err-paymentDate"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Payment Reference/Transaction ID</label>
+                        <input type="text" name="reference" placeholder="Transaction reference from your bank app">
+                    </div>
+
+                    <div class="form-row">
+                        <label>Payment Method <span class="req">*</span></label>
+                        <select name="paymentMethod" required>
+                            <option value="">Select payment method</option>
+                            <option value="Bank Transfer">Bank Transfer</option>
+                            <option value="Mobile Banking">Mobile Banking</option>
+                            <option value="ATM Transfer">ATM Transfer</option>
+                            <option value="Branch Deposit">Branch Deposit</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span class="error" id="err-paymentMethod"></span>
+                    </div>
+
+                    <div class="form-row">
+                        <label>Additional Notes</label>
+                        <textarea name="notes" rows="3"
+                            placeholder="Any additional information about your payment..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" id="submitBtn">
+                        Submit Payment Confirmation
+                    </button>
+
+                    <div id="formMsg" class="form-msg" role="status" aria-live="polite"></div>
+                </form>
+            </div>
+
+            <!-- Quick Payment Calculator -->
+            <div class="card">
+                <h3>Payment Calculator</h3>
+                <p>Calculate your total repayment amount:</p>
+
+                <div class="form-row">
+                    <label>Original Loan Amount (₦)</label>
+                    <input type="number" id="loanAmount" min="1000" step="1000" placeholder="e.g., 100000"
+                        oninput="calculateRepayment()">
+                </div>
+
+                <div class="form-row">
+                    <label>Loan Duration (months)</label>
+                    <input type="number" id="loanMonths" min="1" max="3" placeholder="e.g., 1"
+                        oninput="calculateRepayment()">
+                </div>
+
+                <div class="amount-display" id="repaymentResult" style="display: none;">
+                    <div>Total Amount Due:</div>
+                    <div class="amount" id="totalAmount">₦0</div>
+                    <small>Includes 20% monthly interest</small>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="back-link" onclick="window.close(); return false;">← Back to Main Site</a>
+        </div>
+    </div>
+    <script src="repayment.js"></script>
+
+</body>
+
+</html>
