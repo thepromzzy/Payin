@@ -174,6 +174,7 @@ body {
   background: #111318;
   color: #fff;
 }
+
 .tiny {
   font-size: 0.86rem;
   color: var(--muted);
@@ -315,6 +316,15 @@ body {
   gap: 22px;
   margin-top: 18px;
 }
+
+.repay-grid a {
+  text-decoration: none;
+  background-color: #d63637;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+}
+
 .repay-card {
   background: #fff;
   border: 1px solid var(--line);
