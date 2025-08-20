@@ -10,6 +10,43 @@ menuBtn.addEventListener('click', () => {
   menuBtn.setAttribute('aria-expanded', (!open).toString());
 });
 
+// --- Force-close mobile menu on link click (JS-only) ---
+(function () {
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+
+  const links = nav.querySelectorAll('a');
+
+  function closeMenu() {
+    // handle both strategies so it works with any CSS setup
+    nav.classList.remove('open', 'active');
+    nav.style.maxHeight = null;      // if you used animated max-height
+    nav.style.display = 'none';      // if you used display toggle
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      // only collapse on small screens
+      if (window.innerWidth <= 880) {
+        closeMenu();
+      }
+    });
+  });
+
+  // optional: clean up styles when resizing back to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 880) {
+      nav.style.maxHeight = '';
+      nav.style.display = '';
+      nav.classList.remove('open', 'active');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+})();
+
+
 // Reveal-on-scroll animations
 const io = new IntersectionObserver((entries) => {
   entries.forEach(e => {
