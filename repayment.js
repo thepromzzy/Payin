@@ -55,12 +55,10 @@
         }
 
         form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            clearErrors();
+  e.preventDefault();
 
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            let valid = true;
+  let valid = true;
+  const data = Object.fromEntries(new FormData(form).entries());
 
             // Validation
             if (!data.fullName.trim()) {
@@ -88,6 +86,11 @@
 
             if (!data.paymentDate) {
                 showError('paymentDate', 'Please select the payment date');
+                valid = false;
+            }
+
+              if (!data.paymentMethod) {
+                showError('reference', 'Please enter your payment reference/transaction ID');
                 valid = false;
             }
 

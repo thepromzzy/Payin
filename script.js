@@ -87,20 +87,25 @@ function showError(field, message) {
   if(errEl) errEl.textContent = message;
 }
 
-form.addEventListener('submit', async (e)=>{
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  clearErrors();
 
-  const data = Object.fromEntries(new FormData(form).entries());
   let valid = true;
+  const data = Object.fromEntries(new FormData(form).entries());
 
   // --- Validation rules ---
   if (!data.fullName) { showError("fullName", "Please enter your full name."); valid = false; }
   if (!data.email) { showError("email", "Please enter your email."); valid = false; }
   if (!data.phone) { showError("phone", "Please enter your phone number."); valid = false; }
+  if (!data.bvn) { showError("bvn", "Please enter your bvn number."); valid = false; }
+  if (!data.state) { showError("state", "Please enter your state."); valid = false; }
+  if (!data.localGovernmentArea) { showError("localGovernmentArea", "Please enter your local government area."); valid = false; }
+  if (!data.address) { showError("address", "Please enter your house number and street name."); valid = false; }
   if (!data.loanType) { showError("loanType", "Please select a loan type."); valid = false; }
   if (!data.amount) { showError("amount", "Please enter the loan amount."); valid = false; }
+  if (!data.tenor) { showError("tenor", "Please select a tenor."); valid = false; }
   if (!data.dueDate) { showError("dueDate", "Please select a due date."); valid = false; }
+  if (!data.accountDetails) { showError("accountDetails", "Please input your bank account."); valid = false; }
   if (!data.agree) { showError("agree", "You must agree to continue."); valid = false; }
 
   if (!valid) {

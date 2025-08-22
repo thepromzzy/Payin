@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>KingsFx Loan — Simple, Fair, Fast</title>
+    <title>Payin — Simple, Fair, Fast Loan</title>
     <meta name="description"
         content="Get a transparent loan with fair 20% interest, clear terms, and fast approval. Built for clarity and trust." />
     <link rel="stylesheet" href="style.css" />
@@ -14,21 +14,11 @@
 </head>
 
 <body>
-    <!-- Suspended overlay (shown if account is locked) -->
-    <div id="suspend-overlay" class="hidden" aria-hidden="true">
-        <div class="suspend-card">
-            <h2>Account Suspended</h2>
-            <p>Your access is temporarily locked due to missed repayment. Please contact support or settle your balance
-                to restore access.</p>
-            <button id="request-review-btn" class="btn">I've Repaid — Request Review</button>
-            <small>This is a demo-only lock. In production this action notifies our team.</small>
-        </div>
-    </div>
 
     <header class="site-header">
         <div class="container nav-wrap">
             <a href="#" class="brand">
-                <span class="dot"></span> KingsFx Loan
+                <span class="dot"></span> Payin
             </a>
             <nav id="nav" class="nav">
                 <a href="#hero">Home</a>
@@ -75,7 +65,6 @@
                         <p>Payout window</p>
                     </div>
                 </div>
-                <div class="device"></div>
             </div>
         </div>
     </section>
@@ -84,7 +73,7 @@
     <section id="about" class="section light">
         <div class="container grid-2">
             <div class="reveal">
-                <h2>About KingsFx Loan</h2>
+                <h2>About Payin</h2>
                 <p>We’re a modern micro‑lending outfit designed for clarity and trust. Our process is lightweight, our
                     communication is plain language, and our decisions are guided by responsible lending principles.</p>
                 <p>Whether you’re stabilizing cash flow, growing a side hustle, or covering an urgent expense, we help
@@ -170,8 +159,62 @@
                     <span class="error" id="err-phone"></span>
                 </div>
                 <div class="form-row">
-                    <label>Address</label>
-                    <input type="text" name="address" placeholder="Street, City, State" />
+                    <label>bvn <span class="req">*</span></label>
+                    <input type="tel" name="bvn" required placeholder="2567898421" />
+                    <span class="error" id="err-bvn"></span>
+                </div>
+                <div class="form-row">
+                    <label>State <span class="req">*</span></label>
+                    <select name="state" required>
+                        <option value="">Select</option>
+                        <option>Abia</option>
+                        <option>Adamawa</option>
+                        <option>Akwa Ibom</option>
+                        <option>Anambra</option>
+                        <option>Bauchi</option>
+                        <option>Bayelsa</option>
+                        <option>Benue</option>
+                        <option>Borno</option>
+                        <option>Cross River</option>
+                        <option>Delta</option>
+                        <option>Ebonyi</option>
+                        <option>Edo</option>
+                        <option>Ekiti</option>
+                        <option>Enugu</option>
+                        <option>Gombe</option>
+                        <option>Imo</option>
+                        <option>Jigawa</option>
+                        <option>Kaduna</option>
+                        <option>Kano</option>
+                        <option>Katsina</option>
+                        <option>Kebbi</option>
+                        <option>Kogi</option>
+                        <option>Kwara</option>
+                        <option>Lagos</option>
+                        <option>Nasarawa</option>
+                        <option>Niger</option>
+                        <option>Ogun</option>
+                        <option>Ondo</option>
+                        <option>Osun</option>
+                        <option>Oyo</option>
+                        <option>Plateau</option>
+                        <option>Rivers</option>
+                        <option>Sokoto</option>
+                        <option>Taraba</option>
+                        <option>Yobe</option>
+                        <option>Zamfara</option>
+                    </select>
+                    <span class="error" id="err-state"></span>
+                </div>
+                <div class="form-row">
+                    <label>LGA <span class="req">*</span></label>
+                    <input type="text" name="localGovernmentArea" placeholder="Local government area" />
+                    <span class="error" id="err-localGovernmentArea"></span>
+                </div>
+                <div class="form-row">
+                    <label>House Address <span class="req">*</span></label>
+                    <input type="text" name="address" placeholder="House number, street name" />
+                    <span class="error" id="err-address"></span>
                 </div>
                 <div class="form-row">
                     <label>Loan Type <span class="req">*</span></label>
@@ -190,8 +233,14 @@
                     <span class="error" id="err-amount"></span>
                 </div>
                 <div class="form-row">
-                    <label>Tenor (months) <span class="req">*</span></label>
-                    <input type="number" name="tenor" required min="1" max="3" placeholder="e.g., 1" />
+                    <label>Tenor (loan time frame) <span class="req">*</span></label>
+                    <select name="tenor" required>
+                        <option value="">Select</option>
+                        <option>1 month</option>
+                        <option>2 months</option>
+                        <option>3 months</option>
+                    </select>
+                    <span class="error" id="err-tenor"></span>
                 </div>
                 <div class="form-row">
                     <label>Expected Due Date <span class="req">*</span></label>
@@ -199,9 +248,10 @@
                     <span class="error" id="err-dueDate"></span>
                 </div>
                 <div class="form-row">
-                    <label>Your Bank Account Details (compulsory)</label>
-                    <textarea name="notes" rows="4"
-                        placeholder="Input your bank name, account number and account name…"></textarea>
+                    <label>Your Bank Account Details (compulsory for disbursement) <span class="req">*</span></label>
+                    <textarea name="accountDetails" rows="4"
+                        placeholder="Input your bank name, account number and account name"></textarea>
+                    <span class="error" id="err-accountDetails"></span>
                 </div>
                 <div class="form-row consent">
                     <label>
@@ -291,15 +341,15 @@
     <footer id="contact" class="footer">
         <div class="container footer-grid">
             <div>
-                <a href="#hero" class="brand"><span class="dot"></span> KingsFx Loan</a>
+                <a href="#hero" class="brand"><span class="dot"></span> Payin</a>
                 <p class="muted">Clear. Modern. Responsible lending.</p>
             </div>
             <div>
                 <h4>Contact</h4>
                 <ul class="list">
-                    <li>Email: <a href="mailto:you@yourdomain.com">kingsfx@gmail.com</a></li>
+                    <li>Email: <a href="mailto:you@yourdomain.com">Payin@gmail.com</a></li>
                     <li>Phone: <a href="tel:+2348012345678">+234 701 854 0811</a></li>
-                    <li>Address: Lagos, Nigeria</li>
+                    <li>Address: Abia State, Nigeria</li>
                 </ul>
             </div>
             <div>
@@ -312,7 +362,7 @@
             </div>
         </div>
         <div class="copy">
-            © <span id="year"></span> KingsFx Loan — All rights reserved.
+            © <span id="year"></span> Payin — All rights reserved.
         </div>
     </footer>
 

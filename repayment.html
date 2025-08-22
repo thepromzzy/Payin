@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>KingsFx Loan — Repayment</title>
+    <title>Payin — Repayment</title>
     <meta name="description" content="Make your loan repayment quickly and securely" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +17,7 @@
     <div class="container">
         <div class="header">
             <a href="#" class="brand" onclick="window.close(); return false;">
-                <span class="dot"></span> KingsFx Loan
+                <span class="dot"></span> Payin
             </a>
             <h1 class="page-title">Loan Repayment</h1>
             <p class="subtitle">Complete your repayment quickly and securely</p>
@@ -90,6 +90,7 @@
                     <div class="form-row">
                         <label>Payment Reference/Transaction ID</label>
                         <input type="text" name="reference" placeholder="Transaction reference from your bank app">
+                        <span class="error" id="err-reference"></span>
                     </div>
 
                     <div class="form-row">
@@ -99,7 +100,7 @@
                             <option value="Bank Transfer">Bank Transfer</option>
                             <option value="Mobile Banking">Mobile Banking</option>
                             <option value="ATM Transfer">ATM Transfer</option>
-                            <option value="Branch Deposit">Branch Deposit</option>
+                            <option value="Branch Deposit">Pos Deposit</option>
                             <option value="Other">Other</option>
                         </select>
                         <span class="error" id="err-paymentMethod"></span>
