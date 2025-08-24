@@ -69,7 +69,7 @@ document.querySelectorAll('.btn.copy').forEach(btn=>{
 // --- Loan Form Submission (Formspree with validation) ---
 const form = document.getElementById('loanForm');
 const formMsg = document.getElementById('formMsg');
-const FORMSPREE_URL = "https://formspree.io/f/mvgqjgaj";
+const FORMSPREE_URL = "https://formspree.io/f/xvgbpqlb";
 
 function calcTotal(principal, flatInterest = 0.2){
   if(!principal) return 0;
