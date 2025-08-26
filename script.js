@@ -1,27 +1,50 @@
 // Accent color and year
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Hamburger Menu Toggle
+// Mobile menu toggle
 const menuBtn = document.getElementById('menuBtn');
 const nav = document.getElementById('nav');
-
 menuBtn.addEventListener('click', () => {
-  nav.classList.toggle('open');
-  menuBtn.classList.toggle('active');
-  menuBtn.setAttribute('aria-expanded', nav.classList.contains('open'));
+  const open = nav.style.display === 'block';
+  nav.style.display = open ? 'none' : 'block';
+  menuBtn.setAttribute('aria-expanded', (!open).toString());
 });
 
-// Close menu when clicking a link (mobile only)
-nav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    if (window.innerWidth <= 880) {
-      nav.classList.remove('open');
-      menuBtn.classList.remove('active');
-      menuBtn.setAttribute('aria-expanded', 'false');
+// --- Force-close mobile menu on link click (JS-only) ---
+(function () {
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('nav');
+  if (!nav) return;
+
+  const links = nav.querySelectorAll('a');
+
+  function closeMenu() {
+    // handle both strategies so it works with any CSS setup
+    nav.classList.remove('open', 'active');
+    nav.style.maxHeight = null;      // if you used animated max-height
+    nav.style.display = 'none';      // if you used display toggle
+    if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      // only collapse on small screens
+      if (window.innerWidth <= 880) {
+        closeMenu();
+      }
+    });
+  });
+
+  // optional: clean up styles when resizing back to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 880) {
+      nav.style.maxHeight = '';
+      nav.style.display = '';
+      nav.classList.remove('open', 'active');
+      if (menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
     }
   });
-});
-
+})();
 
 
 // Reveal-on-scroll animations
