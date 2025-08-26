@@ -129,7 +129,9 @@ body {
   font-size: 1.05rem;
 }
 
-/* --- Hamburger Menu --- */
+/* --- Responsive Hamburger Menu --- */
+
+/* Default (Desktop) */
 .menu-btn {
   display: none;
   flex-direction: column;
@@ -141,7 +143,6 @@ body {
   cursor: pointer;
   padding: 0;
 }
-
 .menu-btn .bar {
   height: 3px;
   width: 100%;
@@ -149,8 +150,13 @@ body {
   border-radius: 2px;
   transition: 0.3s;
 }
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
 
-/* animate when active */
+/* Animate hamburger when active */
 .menu-btn.active .bar:nth-child(1) {
   transform: rotate(45deg) translateY(8px);
 }
@@ -161,15 +167,8 @@ body {
   transform: rotate(-45deg) translateY(-8px);
 }
 
-/* Default nav */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-/* Mobile nav hidden */
-@media (max-width: 880px) {
+/* Tablet + Mobile (<=1024px) → Show hamburger, hide default nav */
+@media (max-width: 1024px) {
   .menu-btn {
     display: flex;
     z-index: 1001;
@@ -187,12 +186,12 @@ body {
     gap: 2rem;
     font-size: 1.4rem;
     font-weight: 600;
-    display: none;
+    display: none; /* hidden by default */
     z-index: 1000;
     transition: opacity 0.3s ease;
   }
   .nav.open {
-    display: flex;
+    display: flex; /* visible when toggled */
   }
   .nav a {
     padding: 10px 0;
@@ -511,7 +510,7 @@ body {
 }
 
 /* Mobile (<=640px) */
-@media (max-width: 640px) {
+@media (max-width: 440px) {
   .hero .grid-2,
   .grid-2 {
     grid-template-columns: 1fr;
