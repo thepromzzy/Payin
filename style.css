@@ -510,7 +510,7 @@ body {
 }
 
 /* Mobile (<=640px) */
-@media (max-width: 440px) {
+@media (max-width: 340px) {
   .hero .grid-2,
   .grid-2 {
     grid-template-columns: 1fr;
