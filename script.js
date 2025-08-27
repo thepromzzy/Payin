@@ -4,12 +4,125 @@ document.getElementById('year').textContent = new Date().getFullYear();
 // Mobile menu toggle
 const menuBtn = document.getElementById('menuBtn');
 const nav = document.getElementById('nav');
+
+// Function to check if device is mobile only (not tablet or desktop)
+function isMobile() {
+  return window.innerWidth <= 768; // Mobile breakpoint - nav links visible on tablet and desktop
+}
+
+// Create and add close button to the menu (only on mobile)
+function createCloseButton() {
+  // Only create close button on mobile
+  if (!isMobile()) {
+    return null;
+  }
+  
+  const closeBtn = document.createElement('button');
+  closeBtn.id = 'closeMenuBtn';
+  closeBtn.className = 'close-menu-btn';
+  closeBtn.innerHTML = '&times;'; // × symbol
+  closeBtn.setAttribute('aria-label', 'Close menu');
+  
+  // Add close button to the beginning of nav
+  nav.insertBefore(closeBtn, nav.firstChild);
+  
+  return closeBtn;
+}
+
+// Function to close the menu
+function closeMenu() {
+  nav.classList.remove('fullscreen-menu-open');
+  nav.style.display = 'none';
+  menuBtn.setAttribute('aria-expanded', 'false');
+  // Re-enable body scroll
+  document.body.style.overflow = '';
+}
+
+// Function to open the menu
+function openMenu() {
+  nav.classList.add('fullscreen-menu-open');
+  nav.style.display = 'block';
+  menuBtn.setAttribute('aria-expanded', 'true');
+  // Prevent body scroll when menu is open
+  document.body.style.overflow = 'hidden';
+}
+
+// Create close button when page loads (only on mobile)
+let closeBtn = createCloseButton();
+
+// Menu button click handler
 menuBtn.addEventListener('click', () => {
-  const open = nav.style.display === 'block';
-  nav.style.display = open ? 'none' : 'block';
-  menuBtn.setAttribute('aria-expanded', (!open).toString());
+  const isOpen = nav.classList.contains('fullscreen-menu-open');
+  
+  if (isOpen) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
 });
 
+// Close button click handler (only if close button exists)
+if (closeBtn) {
+  closeBtn.addEventListener('click', closeMenu);
+}
+
+// Auto-close menu when any navigation link is clicked (only on mobile)
+nav.addEventListener('click', (e) => {
+  // Only auto-close on mobile
+  if (!isMobile()) {
+    return;
+  }
+  
+  // Check if clicked element is a link (anchor tag)
+  if (e.target.tagName === 'A' && e.target.href) {
+    closeMenu();
+  }
+});
+
+// Optional: Close menu when clicking outside of it (only on mobile)
+document.addEventListener('click', (e) => {
+  // Only apply on mobile
+  if (!isMobile()) {
+    return;
+  }
+  
+  const isMenuOpen = nav.classList.contains('fullscreen-menu-open');
+  const clickedInsideMenu = nav.contains(e.target);
+  const clickedMenuBtn = menuBtn.contains(e.target);
+  
+  if (isMenuOpen && !clickedInsideMenu && !clickedMenuBtn) {
+    closeMenu();
+  }
+});
+
+// Optional: Close menu with Escape key (only on mobile)
+document.addEventListener('keydown', (e) => {
+  // Only apply on mobile
+  if (!isMobile()) {
+    return;
+  }
+  
+  if (e.key === 'Escape' && nav.classList.contains('fullscreen-menu-open')) {
+    closeMenu();
+  }
+});
+
+// Handle window resize - recreate/remove close button as needed
+window.addEventListener('resize', () => {
+  const existingCloseBtn = document.getElementById('closeMenuBtn');
+  
+  if (isMobile() && !existingCloseBtn) {
+    // Create close button if we're on mobile and it doesn't exist
+    closeBtn = createCloseButton();
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeMenu);
+    }
+  } else if (!isMobile() && existingCloseBtn) {
+    // Remove close button if we're on tablet/desktop and it exists
+    existingCloseBtn.remove();
+    closeBtn = null;
+  }
+});
 // --- Force-close mobile menu on link click (JS-only) ---
 (function () {
   const menuBtn = document.getElementById('menuBtn');
