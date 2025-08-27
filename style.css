@@ -518,6 +518,7 @@ body {
   justify-content: center;
   align-items: center;
   backdrop-filter: blur(10px); /* Optional: adds blur effect */
+  border-bottom: 20px black solid;
 }
 
 /* Style menu items for full screen display */
@@ -534,9 +535,9 @@ body {
 
 #nav.fullscreen-menu-open a {
   color: black;
-  font-size: 1 rem;
+  font-size: 1.4 rem;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 400;
   transition: color 0.3s ease;
 }
 
@@ -551,7 +552,7 @@ body {
   background: none;
   border: none;
   font-size: 30px;
-  color: #333;
+  color: rgb(161, 217, 255);
   cursor: pointer;
   padding: 0;
   width: 40px;
