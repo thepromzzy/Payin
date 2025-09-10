@@ -385,13 +385,17 @@ body {
   gap: 12px;
 }
 
-.social a {
-  text-decoration: none;
-  color: #d63637;
+.social img {
+  width: 50px;
+  height: 50px;
+  background-color: #d63637;
+  padding: 10px;
+  border-radius: 12px;
 }
 
-.social a:hover {
-  font-weight: bold;
+.social img:hover {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
 }
 .copy {
   text-align: center;
